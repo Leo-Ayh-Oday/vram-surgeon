@@ -1,0 +1,45 @@
+name: Feature request
+description: 提一个新增能力（新模型预设、新诊断根因、新手术手段、UI 工作台）
+labels: ['enhancement']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你要解决的真实场景
+      description: 别写「支持更多模型」，写清楚哪张卡、哪个模型、哪个配置、现在算不出来或算错了什么。
+      placeholder: RTX 3060 12GB 跑 Qwen2.5-14B 的 QLoRA，现在没有这个组合的实测校准值
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你建议怎么做
+      description: 涉及公式变更的，请给出物理依据（官方实现 / 论文 / 实测数据）。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 影响模块
+      multiple: true
+      options:
+        - presets（预设库）
+        - hf-parser
+        - physics-engine（显存方程）
+        - oom-diagnostician（诊断 / 手术）
+        - codegen（启动包）
+        - python-probe（真机探针）
+        - 契约书 / types.ts（冻结件，需走变更流程）
+        - UI / 工作台
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contract
+    attributes:
+      label: 契约影响
+      options:
+        - label: 这个改动会变更现有公式或字段（需要先升契约版本）
+        - label: 这个改动会改变黄金值 A1–A16 的期望值（需附证据）

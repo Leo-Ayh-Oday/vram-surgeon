@@ -1,0 +1,12 @@
+# Code owners
+
+`*` 默认归属仓库所有者。冻结件单独列出，改动时自动请求 review。
+
+*       @Leo-Ayh-Oday
+
+# 冻结件（契约宪法）——改动需先开 [契约变更] issue
+/docs/01_ARCH_CONTRACT.md       @Leo-Ayh-Oday
+/src/core/types.ts              @Leo-Ayh-Oday
+/src/core/constants.ts          @Leo-Ayh-Oday
+/src/core/__tests__/engine.test.ts  @Leo-Ayh-Oday
+/.github/                       @Leo-Ayh-Oday

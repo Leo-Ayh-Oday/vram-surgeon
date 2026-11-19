@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 契约书（先读这个再提问）
+    url: https://github.com/Leo-Ayh-Oday/vram-surgeon/blob/main/docs/01_ARCH_CONTRACT.md
+    about: 公式、容差、验收标准都在这份冻结文档里，90% 的疑问能自己找到答案
+  - name: 协作指南
+    url: https://github.com/Leo-Ayh-Oday/vram-surgeon/blob/main/CONTRIBUTING.md
+    about: 分支流程、冻结件变更规则、提交前自检清单

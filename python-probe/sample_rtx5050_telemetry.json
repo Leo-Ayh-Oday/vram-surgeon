@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "vram-telemetry/1",
+  "probeVersion": "1.1.1-mock",
+  "capturedAtUtc": "2026-11-18T08:12:34.542024+00:00",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 5050",
+    "driverVersion": "572.16",
+    "cudaRuntimeVersion": "12.8",
+    "totalCapacityGib": 8.0,
+    "computeCapability": "12.0"
+  },
+  "torch": {
+    "torchVersion": "2.7.0+cu128",
+    "cudaAvailable": true,
+    "allocatorBackend": "native",
+    "expandableSegmentsEnabled": false
+  },
+  "os": {
+    "platform": "windows",
+    "osEnv": "windows_wddm",
+    "displayAttached": true,
+    "driverModel": "wddm"
+  },
+  "calibration": {
+    "cudaContextGib": 0.652,
+    "emptyProcessBaselineGib": 1.402,
+    "fragmentationRatio": 0.087,
+    "measuredBandwidthGbPerSec": 298.4
+  },
+  "samples": [
+    {
+      "stepIndex": 1,
+      "phase": "forward",
+      "allocatedGib": 0.72119140625,
+      "reservedGib": 1.43593505859375,
+      "maxAllocatedGib": 0.72119140625,
+      "maxReservedGib": 1.43593505859375,
+      "deviceFreeGib": 5.81406494140625
+    },
+    {
+      "stepIndex": 2,
+      "phase": "logits_spike",
+      "allocatedGib": 3.62158203125,
+      "reservedGib": 4.5886596679687495,
+      "maxAllocatedGib": 3.62158203125,
+      "maxReservedGib": 4.5886596679687495,
+      "deviceFreeGib": 2.6613403320312505
+    },
+    {
+      "stepIndex": 3,
+      "phase": "backward",
+      "allocatedGib": 4.0556640625,
+      "reservedGib": 5.0605068359375,
+      "maxAllocatedGib": 4.0556640625,
+      "maxReservedGib": 5.0605068359375,
+      "deviceFreeGib": 2.1894931640625
+    },
+    {
+      "stepIndex": 4,
+      "phase": "optimizer_step",
+      "allocatedGib": 1.736328125,
+      "reservedGib": 2.539388671875,
+      "maxAllocatedGib": 1.736328125,
+      "maxReservedGib": 2.539388671875,
+      "deviceFreeGib": 4.710611328125
+    }
+  ]
+}

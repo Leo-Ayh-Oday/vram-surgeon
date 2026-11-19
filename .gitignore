@@ -1,0 +1,33 @@
+# --- Node ---
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# --- 探针产物（本地实测数据不入库，示例件 sample_*.json 例外）---
+python-probe/telemetry_report.json
+
+# --- 环境与本地配置 ---
+.env
+.env.*
+*.local
+*.log
+
+# --- 编辑器 / 系统 ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

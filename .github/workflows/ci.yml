@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: typecheck & test (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20', '22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck (tsc --noEmit, strict)
+        run: npm run typecheck
+
+      - name: Unit tests (vitest)
+        run: npm test
+
+      - name: Contract discipline — no `any` in core
+        run: |
+          if grep -rnE ':\s*any\b|\bas\s+any\b|<any>' src/core --include='*.ts'; then
+            echo "::error::src/core 出现 any（契约 §9.1 第 2 条：零 any）"
+            exit 1
+          fi
+          echo "no any ✓"
+
+  probe:
+    name: python probe syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile probe (no torch required)
+        run: python -m py_compile python-probe/vram_telemetry_probe.py
+
+      - name: Mock mode must emit a valid report
+        run: |
+          python python-probe/vram_telemetry_probe.py --mock-rtx5050 --output /tmp/report.json > /tmp/stdout.json
+          python - <<'PY'
+          import json
+          report = json.load(open('/tmp/stdout.json'))
+          assert report['schemaVersion'] == 'vram-telemetry/1', report.get('schemaVersion')
+          assert report['probeVersion'].endswith('-mock'), report['probeVersion']
+          assert report['samples'], 'samples 不应为空'
+          print('probe mock report ok:', len(report['samples']), 'samples')
+          PY

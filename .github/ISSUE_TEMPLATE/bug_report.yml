@@ -1,0 +1,56 @@
+name: Bug report
+description: 报告一个可复现的错误（显存算错、OOM 误判、脚本不能用）
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先确认：`npm run typecheck && npm test` 是否全绿？若本地已红，贴出失败用例名。
+        再确认：你用的是契约里的预设配置（`gpus.ts` / `models.ts`），还是自己拼的配置？
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 实际发生了什么
+      description: 一句话说清楚现象。
+      placeholder: computeVramBreakdown 返回 4.2 GiB，但理论应该是 5.86 GiB
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你期望的结果
+      description: 如果引用契约条款或黄金值（A1–A16），请写明编号。
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 最小复现代码
+      description: 能直接跑起来的片段，包含 gpu / model / config 三个输入。
+      render: ts
+    validations:
+      required: true
+
+  - type: textarea
+    id: env
+    attributes:
+      label: 环境
+      placeholder: |
+        OS: Windows 11 24H2 / Ubuntu 24.04 (WSL2)
+        Node: v22.22.2
+        GPU: RTX 5050 8GB (WDDM)
+        Python / torch: 3.12 / 2.7.0+cu128（涉及探针时填）
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 报错或 OOM 日志
+      description: 涉及 OOM 解析时，请粘贴**完整** PyTorch traceback 原文，不要手抄数字。
+      render: shell
+    validations:
+      required: false

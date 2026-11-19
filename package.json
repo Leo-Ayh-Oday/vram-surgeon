@@ -1,0 +1,26 @@
+{
+  "name": "vram-surgeon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VRAM Surgeon - 大模型微调与部署显存解剖及自动抢救引擎 (2026 Qoder 高校创造力大赛 StudyHack)",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}
